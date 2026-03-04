@@ -9,7 +9,6 @@ import java.util.List;
 
 import edu.jsu.mcis.cs408.memopadpartone.Database.Memo;
 import edu.jsu.mcis.cs408.memopadpartone.R;
-import edu.jsu.mcis.cs408.memopadpartone.databinding.ActivityMainBinding;
 import edu.jsu.mcis.cs408.memopadpartone.databinding.MemoItemBinding;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {

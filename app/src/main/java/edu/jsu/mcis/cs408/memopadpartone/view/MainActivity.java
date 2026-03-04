@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
         @Override
         public void onClick(View v) {
             /*
-             * When the "Change" buttons are clicked, inform the controller of an input field
-             * change, so that the Model(s) can be updated accordingly.
+             * When a button is clicked, inform the controller of teh correct change,
+             * so that the Model(s) can be updated accordingly.
              */
             String tag = v.getTag().toString();
             if (tag.equals("add_button")) {

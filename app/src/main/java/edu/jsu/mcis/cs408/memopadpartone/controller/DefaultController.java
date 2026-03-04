@@ -17,9 +17,8 @@ public class DefaultController extends AbstractController
      */
 
     public static final String ELEMENT_MEMO_LIST_PROPERTY = "MemoList";
-    public static final String ELEMENT_DBHANDLER_PROPERTY = "DBHandler";
     /*
-     * This is the change method which corresponds to ELEMENT_TEXT1_PROPERTY.
+     * This is the change method which corresponds to ELEMENT_MEMO_LIST_PROPERTY.
      * It receives the new data for the Model, and invokes "setModelProperty()"
      * (inherited from AbstractController) so that the proper Model can be found
      * and updated properly.

@@ -13,11 +13,8 @@ public class DefaultModel extends AbstractModel {
 
     public static final String TAG = "DefaultModel";
 
-    /*
-     * This is a simple implementation of an AbstractModel which encapsulates
-     * two text fields, text1 and text2, which (in this example) are each
-     * reflected in the View as an EditText field and a TextView label.
-     */
+    // Member variables that allow us to handle database operations as
+    // well as store memo data
     private Context context;
     private DatabaseHandler db;
     private List<Memo> memoList;
@@ -29,10 +26,7 @@ public class DefaultModel extends AbstractModel {
     }
 
     /*
-     * Initialize the model elements to known default values.  We use the setter
-     * methods instead of changing the values directly so that these changes are
-     * properly announced to the Controller, and so that the Views can be updated
-     * accordingly.
+     * Initialize the model elements to known default values.
      */
 
 
@@ -41,7 +35,7 @@ public class DefaultModel extends AbstractModel {
     }
 
     /*
-     * Simple getter methods for text1 and text2
+     * Simple getter method for memoList
      */
 
     public List<Memo> getMemoList() {
@@ -50,7 +44,7 @@ public class DefaultModel extends AbstractModel {
 
 
     /*
-     * Setters for text1 and text2.  Notice that, in addition to changing the
+     * Setter for memoList.  Notice that, in addition to changing the
      * values, these methods announce the change to the controller by firing a
      * PropertyChange event.  Any registered AbstractController subclasses will
      * receive this event, and will propagate it to all registered Views so that
