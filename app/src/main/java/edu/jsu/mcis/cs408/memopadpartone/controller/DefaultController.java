@@ -1,0 +1,43 @@
+package edu.jsu.mcis.cs408.memopadpartone.controller;
+
+import java.util.List;
+
+import edu.jsu.mcis.cs408.memopadpartone.Database.Memo;
+import edu.jsu.mcis.cs408.memopadpartone.model.DefaultModel;
+
+public class DefaultController extends AbstractController
+{
+
+    /*
+     * These static property names are used as the identifiers for the elements
+     * of the Models and Views which may need to be updated.  These updates can
+     * be a result of changes to the Model which must be reflected in the View,
+     * or a result of changes to the View (in response to user input) which must
+     * be reflected in the Model.
+     */
+
+    public static final String ELEMENT_MEMO_LIST_PROPERTY = "MemoList";
+    public static final String ELEMENT_DBHANDLER_PROPERTY = "DBHandler";
+    /*
+     * This is the change method which corresponds to ELEMENT_TEXT1_PROPERTY.
+     * It receives the new data for the Model, and invokes "setModelProperty()"
+     * (inherited from AbstractController) so that the proper Model can be found
+     * and updated properly.
+     */
+
+    public void changeElementMemoList(String memo) {
+        setModelProperty(ELEMENT_MEMO_LIST_PROPERTY, memo);
+    }
+
+    // Method to retrieve memos from the model
+    // (primarily used in the MainActivity's updateRecyclerView() method)
+    public List<Memo> getMemoList(){
+        if (getModelZero() instanceof DefaultModel){
+            DefaultModel m = (DefaultModel) getModelZero();
+            return m.getMemoList();
+        }
+        System.out.println("----ERROR IN DefaultController.java IN getMemoList()----");
+        System.out.println("ERROR: MODEL ZERO IS NOT AN INSTANCE OF DefaultModel");
+        return null;
+    }
+}

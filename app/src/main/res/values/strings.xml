@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Memo Pad</string>
+    <string name="memo_label">New Memo: </string>
+    <string name="add_button_text">Add Memo</string>
+    <string name="add_button_tag">add_button</string>
+    <string name="delete_button_text">Delete Memo</string>
+    <string name="delete_button_tag">delete_button</string>
+</resources>

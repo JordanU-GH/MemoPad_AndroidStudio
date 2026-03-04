@@ -1,0 +1,105 @@
+package edu.jsu.mcis.cs408.memopadpartone.view;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import java.beans.PropertyChangeEvent;
+
+import edu.jsu.mcis.cs408.memopadpartone.controller.DefaultController;
+import edu.jsu.mcis.cs408.memopadpartone.databinding.ActivityMainBinding;
+import edu.jsu.mcis.cs408.memopadpartone.model.DefaultModel;
+
+public class MainActivity extends AppCompatActivity implements AbstractView {
+    public static final String TAG = "MainActivity";
+    private ActivityMainBinding binding;
+    private DefaultController controller;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        /* Create Controller and Model */
+
+        controller = new DefaultController();
+        DefaultModel model = new DefaultModel(this);
+
+        /* Register Activity View and Model with Controller */
+
+        controller.addView(this);
+        controller.addModel(model);
+
+        /* Initialize Model to Default Values */
+
+        model.initDefault();
+
+        /* Associate Click Handler with Input Buttons */
+
+        DefaultClickHandler click = new DefaultClickHandler();
+        ConstraintLayout layout = binding.layout;
+
+        for (int i = 0; i < layout.getChildCount(); ++i) {
+            View child = layout.getChildAt(i);
+            if(child instanceof Button) {
+                child.setOnClickListener(click);
+            }
+        }
+
+        // Load any preexisting memos
+        updateRecyclerView();
+    }
+
+    @Override
+    public void modelPropertyChange(final PropertyChangeEvent evt) {
+        /*
+         * This method is called by the "propertyChange()" method of AbstractController
+         * when a change is made to an element of a Model.  It identifies the element that
+         * was changed and updates the View accordingly.
+         */
+
+        String propertyName = evt.getPropertyName();
+        String propertyValue = evt.getNewValue().toString();
+
+        Log.i(TAG, "New " + propertyName + " Value from Model: " + propertyValue);
+
+        if ( propertyName.equals(DefaultController.ELEMENT_MEMO_LIST_PROPERTY) ) {
+            updateRecyclerView();
+        }
+    }
+
+    class DefaultClickHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            /*
+             * When the "Change" buttons are clicked, inform the controller of an input field
+             * change, so that the Model(s) can be updated accordingly.
+             */
+            String tag = v.getTag().toString();
+            if (tag.equals("add_button")) {
+                String newMemo = binding.memoInput.getText().toString();
+                controller.changeElementMemoList(newMemo);
+            }
+        }
+    }
+
+    private void updateRecyclerView() {
+        if (controller.getMemoList() == null){
+            System.out.println("----ERROR IN MainActivity.java IN updateRecyclerView----");
+            System.out.println("ERROR: MEMO LIST IS NULL");
+            return;
+        }
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(controller.getMemoList());
+        binding.memoList.setHasFixedSize(true);
+        binding.memoList.setLayoutManager(new LinearLayoutManager(this));
+        binding.memoList.setAdapter(adapter);
+    }
+
+}
