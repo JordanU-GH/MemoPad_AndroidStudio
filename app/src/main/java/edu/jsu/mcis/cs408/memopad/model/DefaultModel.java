@@ -1,13 +1,13 @@
-package edu.jsu.mcis.cs408.memopadpartone.model;
+package edu.jsu.mcis.cs408.memopad.model;
 
 import android.content.Context;
 import android.util.Log;
 
 import java.util.List;
 
-import edu.jsu.mcis.cs408.memopadpartone.Database.Memo;
-import edu.jsu.mcis.cs408.memopadpartone.Database.DatabaseHandler;
-import edu.jsu.mcis.cs408.memopadpartone.controller.DefaultController;
+import edu.jsu.mcis.cs408.memopad.Database.Memo;
+import edu.jsu.mcis.cs408.memopad.Database.DatabaseHandler;
+import edu.jsu.mcis.cs408.memopad.controller.DefaultController;
 
 public class DefaultModel extends AbstractModel {
 

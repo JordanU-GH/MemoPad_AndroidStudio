@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopadpartone.view;
+package edu.jsu.mcis.cs408.memopad.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import java.beans.PropertyChangeEvent;
 
-import edu.jsu.mcis.cs408.memopadpartone.controller.DefaultController;
-import edu.jsu.mcis.cs408.memopadpartone.databinding.ActivityMainBinding;
-import edu.jsu.mcis.cs408.memopadpartone.model.DefaultModel;
+import edu.jsu.mcis.cs408.memopad.controller.DefaultController;
+import edu.jsu.mcis.cs408.memopad.databinding.ActivityMainBinding;
+import edu.jsu.mcis.cs408.memopad.model.DefaultModel;
 
 public class MainActivity extends AppCompatActivity implements AbstractView {
     public static final String TAG = "MainActivity";

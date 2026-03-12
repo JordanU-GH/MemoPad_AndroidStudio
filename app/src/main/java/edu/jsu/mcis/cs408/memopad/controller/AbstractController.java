@@ -1,12 +1,12 @@
-package edu.jsu.mcis.cs408.memopadpartone.controller;
+package edu.jsu.mcis.cs408.memopad.controller;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import edu.jsu.mcis.cs408.memopadpartone.model.AbstractModel;
-import edu.jsu.mcis.cs408.memopadpartone.view.AbstractView;
+import edu.jsu.mcis.cs408.memopad.model.AbstractModel;
+import edu.jsu.mcis.cs408.memopad.view.AbstractView;
 
 public abstract class AbstractController implements PropertyChangeListener {
 

@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopadpartone;
+package edu.jsu.mcis.cs408.memopad;
 
 import android.content.Context;
 

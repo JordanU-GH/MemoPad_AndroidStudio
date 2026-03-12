@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "edu.jsu.mcis.cs408.memopadpartone"
+    namespace = "edu.jsu.mcis.cs408.memopad"
     compileSdk {
         version = release(36)
     }

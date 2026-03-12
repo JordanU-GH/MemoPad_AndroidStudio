@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopadpartone.view;
+package edu.jsu.mcis.cs408.memopad.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-import edu.jsu.mcis.cs408.memopadpartone.Database.Memo;
-import edu.jsu.mcis.cs408.memopadpartone.R;
-import edu.jsu.mcis.cs408.memopadpartone.databinding.MemoItemBinding;
+import edu.jsu.mcis.cs408.memopad.Database.Memo;
+import edu.jsu.mcis.cs408.memopad.R;
+import edu.jsu.mcis.cs408.memopad.databinding.MemoItemBinding;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 

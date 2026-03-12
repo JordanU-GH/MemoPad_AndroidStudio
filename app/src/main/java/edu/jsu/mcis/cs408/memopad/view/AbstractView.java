@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopadpartone.view;
+package edu.jsu.mcis.cs408.memopad.view;
 
 import java.beans.PropertyChangeEvent;
 

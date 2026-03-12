@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopadpartone.Database;
+package edu.jsu.mcis.cs408.memopad.Database;
 
 import android.content.ContentValues;
 import android.content.Context;

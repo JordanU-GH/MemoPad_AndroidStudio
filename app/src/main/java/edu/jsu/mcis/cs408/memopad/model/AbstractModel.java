@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopadpartone.model;
+package edu.jsu.mcis.cs408.memopad.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
