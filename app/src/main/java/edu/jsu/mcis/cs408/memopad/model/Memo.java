@@ -26,7 +26,7 @@ public class Memo {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append("#").append(id).append(": ").append(memo).append("\n");
+        s.append("#").append(id).append(": ").append(memo);
         return s.toString();
     }
 

@@ -6,7 +6,6 @@ import android.util.Log;
 import java.util.List;
 
 import edu.jsu.mcis.cs408.memopad.model.dao.DAOFactory;
-import edu.jsu.mcis.cs408.memopad.model.dao.DatabaseHandler;
 import edu.jsu.mcis.cs408.memopad.controller.DefaultController;
 
 public class DefaultModel extends AbstractModel {
