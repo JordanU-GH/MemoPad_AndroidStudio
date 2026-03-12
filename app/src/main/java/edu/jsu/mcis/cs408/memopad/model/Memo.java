@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopad.Database;
+package edu.jsu.mcis.cs408.memopad.model;
 
 public class Memo {
     private int id;

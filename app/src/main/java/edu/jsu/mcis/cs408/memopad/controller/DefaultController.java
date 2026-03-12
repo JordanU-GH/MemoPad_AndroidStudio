@@ -2,7 +2,7 @@ package edu.jsu.mcis.cs408.memopad.controller;
 
 import java.util.List;
 
-import edu.jsu.mcis.cs408.memopad.Database.Memo;
+import edu.jsu.mcis.cs408.memopad.model.Memo;
 import edu.jsu.mcis.cs408.memopad.model.DefaultModel;
 
 public class DefaultController extends AbstractController

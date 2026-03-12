@@ -1,4 +1,4 @@
-package edu.jsu.mcis.cs408.memopad.Database;
+package edu.jsu.mcis.cs408.memopad.model.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+
+import edu.jsu.mcis.cs408.memopad.model.Memo;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;

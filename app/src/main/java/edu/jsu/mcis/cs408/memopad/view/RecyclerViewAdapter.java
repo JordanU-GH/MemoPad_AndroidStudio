@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-import edu.jsu.mcis.cs408.memopad.Database.Memo;
+import edu.jsu.mcis.cs408.memopad.model.Memo;
 import edu.jsu.mcis.cs408.memopad.R;
 import edu.jsu.mcis.cs408.memopad.databinding.MemoItemBinding;
 
