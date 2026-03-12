@@ -50,7 +50,7 @@ public class DefaultModel extends AbstractModel {
      */
 
     public void setAddMemo(String memo) {
-        List<Memo> oldList = daoFactory.getMemoDao().list();;
+        List<Memo> oldList = daoFactory.getMemoDao().list();
 
         daoFactory.getMemoDao().create(new Memo(memo));
         List<Memo> newList = daoFactory.getMemoDao().list();
