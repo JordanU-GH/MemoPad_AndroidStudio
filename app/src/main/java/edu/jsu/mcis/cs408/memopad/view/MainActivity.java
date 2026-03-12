@@ -8,16 +8,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.beans.PropertyChangeEvent;
 
+import edu.jsu.mcis.cs408.memopad.R;
 import edu.jsu.mcis.cs408.memopad.controller.DefaultController;
 import edu.jsu.mcis.cs408.memopad.databinding.ActivityMainBinding;
 import edu.jsu.mcis.cs408.memopad.model.DefaultModel;
+import edu.jsu.mcis.cs408.memopad.model.Memo;
 
 public class MainActivity extends AppCompatActivity implements AbstractView {
     public static final String TAG = "MainActivity";
     private ActivityMainBinding binding;
     private DefaultController controller;
+    private final DefaultClickHandler itemClick = new DefaultClickHandler();
+
+    public DefaultClickHandler getItemClick() { return itemClick; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,22 +77,39 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
 
         Log.i(TAG, "New " + propertyName + " Value from Model: " + propertyValue);
 
-        if ( propertyName.equals(DefaultController.ELEMENT_MEMO_LIST_PROPERTY) ) {
-            updateRecyclerView();
-        }
+        // We could have different effects depending
+        // on the property change that occurred.
+        // However, for the purposes of this assignment,
+        // it seems that we always want to update the recyclerview regardless
+        updateRecyclerView();
     }
 
     class DefaultClickHandler implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            int position = binding.memoList.getChildLayoutPosition(v);
+            Integer id = null;
+            RecyclerViewAdapter adapter = (RecyclerViewAdapter)binding.memoList.getAdapter();
+            if (adapter != null) {
+                Memo memo = adapter.getMemoAtPosition(position);
+                id = memo.getId();
+                Toast.makeText(v.getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+            }
             /*
-             * When a button is clicked, inform the controller of teh correct change,
+             * When a button is clicked, inform the controller of the correct change,
              * so that the Model(s) can be updated accordingly.
              */
             String tag = v.getTag().toString();
-            if (tag.equals("add_button")) {
+            if ( tag.equals(getResources().getString(R.string.add_button_tag)) ) {
                 String newMemo = binding.memoInput.getText().toString();
                 controller.changeElementMemoList(newMemo);
+            }
+            else if ( tag.equals(getResources().getString(R.string.delete_button_tag)) ) {
+                if (id != null) {
+                    controller.changeElementDeleteMemo(id);
+                }else{
+                    Toast.makeText(v.getContext(), "No Memo Selected", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -96,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
             System.out.println("ERROR: MEMO LIST IS NULL");
             return;
         }
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(controller.getMemoList());
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, controller.getMemoList());
         binding.memoList.setHasFixedSize(true);
         binding.memoList.setLayoutManager(new LinearLayoutManager(this));
         binding.memoList.setAdapter(adapter);

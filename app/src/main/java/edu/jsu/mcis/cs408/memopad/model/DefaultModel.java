@@ -50,17 +50,24 @@ public class DefaultModel extends AbstractModel {
      * they can update themselves accordingly.
      */
 
-    public void setMemoList(String memo) {
-
+    public void setAddMemo(String memo) {
         List<Memo> oldList = this.memoList;
 
         daoFactory.getMemoDao().create(new Memo(memo));
         List<Memo> newList = daoFactory.getMemoDao().list();
 
-        this.memoList = newList;
+        Log.i(TAG, "Text1 Change: From " + oldList + " to " + newList);
+        firePropertyChange(DefaultController.ADD_MEMO_PROPERTY, oldList, newList);
+    }
+
+    public void setDeleteMemo(int id) {
+        List<Memo> oldList = this.memoList;
+
+        daoFactory.getMemoDao().delete(id);
+        List<Memo> newList = daoFactory.getMemoDao().list();
 
         Log.i(TAG, "Text1 Change: From " + oldList + " to " + newList);
-        firePropertyChange(DefaultController.ELEMENT_MEMO_LIST_PROPERTY, oldList, newList);
+        firePropertyChange(DefaultController.ADD_MEMO_PROPERTY, oldList, newList);
     }
 
 }
