@@ -33,7 +33,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEMOS);
         onCreate(db);
     }
-
+    // Refactored into MemoDAO
+    /*
     public void addMemo(Memo m) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_MEMO, m.getMemo());
@@ -43,7 +44,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_MEMOS, null, values);
         db.close();
     }
-
+   */
+    // Refactored into MemoDAO
+    /*
     public Memo getMemo(int id) {
         String query = "SELECT * FROM " + TABLE_MEMOS + " WHERE " + COLUMN_ID + " = " + id;
 
@@ -62,6 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
         return m;
     }
+*/
 
     public String getAllMemos() {
         String query = "SELECT * FROM " + TABLE_MEMOS;
@@ -84,6 +88,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return s.toString();
     }
 
+    // Refactored into MemoDAO
+    /*
     public ArrayList<Memo> getAllMemosAsList() {
 
         String query = "SELECT * FROM " + TABLE_MEMOS;
@@ -106,5 +112,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
         return allMemos;
     }
-
+    */
 }

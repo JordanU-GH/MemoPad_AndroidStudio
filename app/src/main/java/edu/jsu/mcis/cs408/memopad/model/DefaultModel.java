@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import edu.jsu.mcis.cs408.memopad.model.dao.DAOFactory;
 import edu.jsu.mcis.cs408.memopad.model.dao.DatabaseHandler;
 import edu.jsu.mcis.cs408.memopad.controller.DefaultController;
 
@@ -15,13 +16,13 @@ public class DefaultModel extends AbstractModel {
     // Member variables that allow us to handle database operations as
     // well as store memo data
     private Context context;
-    private DatabaseHandler db;
+    private DAOFactory daoFactory;
     private List<Memo> memoList;
 
     // Default constructor that sets up our DBHandler
     public DefaultModel(Context c){
         this.context = c;
-        this.db = new DatabaseHandler(this.context, null, null, 1);
+        this.daoFactory = new DAOFactory(this.context, null, null, 1);
     }
 
     /*
@@ -30,7 +31,7 @@ public class DefaultModel extends AbstractModel {
 
 
     public void initDefault() {
-        this.memoList = db.getAllMemosAsList();
+        this.memoList = daoFactory.getMemoDao().list();
     }
 
     /*
@@ -54,8 +55,8 @@ public class DefaultModel extends AbstractModel {
 
         List<Memo> oldList = this.memoList;
 
-        db.addMemo(new Memo(memo));
-        List<Memo> newList = db.getAllMemosAsList();
+        daoFactory.getMemoDao().create(new Memo(memo));
+        List<Memo> newList = daoFactory.getMemoDao().list();
 
         this.memoList = newList;
 
