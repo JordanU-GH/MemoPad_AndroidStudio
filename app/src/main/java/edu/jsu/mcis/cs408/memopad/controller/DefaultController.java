@@ -25,7 +25,7 @@ public class DefaultController extends AbstractController
      */
 
     // Method to inform the model to add a new memo
-    public void changeElementMemoList(String memo) {
+    public void changeElementAddMemo(String memo) {
         setModelProperty(ADD_MEMO_PROPERTY, memo);
     }
 

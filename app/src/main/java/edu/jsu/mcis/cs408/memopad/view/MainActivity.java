@@ -22,9 +22,10 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
     public static final String TAG = "MainActivity";
     private ActivityMainBinding binding;
     private DefaultController controller;
-    private final DefaultClickHandler itemClick = new DefaultClickHandler();
+    private final MemoPadItemClickHandler itemClick = new MemoPadItemClickHandler();
+    private Integer lastId = null;
 
-    public DefaultClickHandler getItemClick() { return itemClick; }
+    public MemoPadItemClickHandler getItemClick() { return itemClick; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,14 +88,6 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
     class DefaultClickHandler implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            int position = binding.memoList.getChildLayoutPosition(v);
-            Integer id = null;
-            RecyclerViewAdapter adapter = (RecyclerViewAdapter)binding.memoList.getAdapter();
-            if (adapter != null) {
-                Memo memo = adapter.getMemoAtPosition(position);
-                id = memo.getId();
-                Toast.makeText(v.getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
-            }
             /*
              * When a button is clicked, inform the controller of the correct change,
              * so that the Model(s) can be updated accordingly.
@@ -102,14 +95,28 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
             String tag = v.getTag().toString();
             if ( tag.equals(getResources().getString(R.string.add_button_tag)) ) {
                 String newMemo = binding.memoInput.getText().toString();
-                controller.changeElementMemoList(newMemo);
+                controller.changeElementAddMemo(newMemo);
             }
             else if ( tag.equals(getResources().getString(R.string.delete_button_tag)) ) {
-                if (id != null) {
-                    controller.changeElementDeleteMemo(id);
+                if (lastId != null) {
+                    controller.changeElementDeleteMemo(lastId);
+                    lastId = null;
                 }else{
                     Toast.makeText(v.getContext(), "No Memo Selected", Toast.LENGTH_SHORT).show();
                 }
+            }
+        }
+    }
+
+    private class MemoPadItemClickHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            int position = binding.memoList.getChildLayoutPosition(v);
+            RecyclerViewAdapter adapter = (RecyclerViewAdapter)binding.memoList.getAdapter();
+            if (adapter != null) {
+                Memo memo = adapter.getMemoAtPosition(position);
+                lastId = memo.getId();
+                Toast.makeText(v.getContext(), String.valueOf(lastId), Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -16,7 +16,6 @@ public class DefaultModel extends AbstractModel {
     // well as store memo data
     private Context context;
     private DAOFactory daoFactory;
-    private List<Memo> memoList;
 
     // Default constructor that sets up our DBHandler
     public DefaultModel(Context c){
@@ -30,7 +29,7 @@ public class DefaultModel extends AbstractModel {
 
 
     public void initDefault() {
-        this.memoList = daoFactory.getMemoDao().list();
+        getMemoList();
     }
 
     /*
@@ -38,7 +37,7 @@ public class DefaultModel extends AbstractModel {
      */
 
     public List<Memo> getMemoList() {
-        return memoList;
+        return daoFactory.getMemoDao().list();
     }
 
 
@@ -51,23 +50,23 @@ public class DefaultModel extends AbstractModel {
      */
 
     public void setAddMemo(String memo) {
-        List<Memo> oldList = this.memoList;
+        List<Memo> oldList = daoFactory.getMemoDao().list();;
 
         daoFactory.getMemoDao().create(new Memo(memo));
         List<Memo> newList = daoFactory.getMemoDao().list();
 
-        Log.i(TAG, "Text1 Change: From " + oldList + " to " + newList);
+        Log.i(TAG, "MemoList Change: From " + oldList + " to " + newList);
         firePropertyChange(DefaultController.ADD_MEMO_PROPERTY, oldList, newList);
     }
 
-    public void setDeleteMemo(int id) {
-        List<Memo> oldList = this.memoList;
+    public void setDeleteMemo(Integer id) {
+        List<Memo> oldList = daoFactory.getMemoDao().list();
 
         daoFactory.getMemoDao().delete(id);
         List<Memo> newList = daoFactory.getMemoDao().list();
 
-        Log.i(TAG, "Text1 Change: From " + oldList + " to " + newList);
-        firePropertyChange(DefaultController.ADD_MEMO_PROPERTY, oldList, newList);
+        Log.i(TAG, "MemoList Change: From " + oldList + " to " + newList);
+        firePropertyChange(DefaultController.DELETE_MEMO_PROPERTY, oldList, newList);
     }
 
 }

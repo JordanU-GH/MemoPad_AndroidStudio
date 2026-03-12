@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,11 @@ public class MemoDAO {
 
     // Method to delete a memo
     public void delete(Integer id) {
-        // ...
+        String[] values = {String.valueOf(id)};
+        String whereClause = DAOFactory.COLUMN_ID + " = ?";
+        SQLiteDatabase db = daoFactory.getWritableDatabase();
+        db.delete(DAOFactory.TABLE_MEMOS, whereClause, values);
+        db.close();
     }
 
     // Method to find a single memo using its id
